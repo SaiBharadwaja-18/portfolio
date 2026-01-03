@@ -111,5 +111,9 @@ export type Database = {
     linkedin?: string;
     twitter?: string;
     updated_at: string;
+    education: string;
+    education_jp?: string;
+    experience: string;
+    experience_jp?: string;
   };
 };
