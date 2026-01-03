@@ -9,7 +9,7 @@ import type { Database } from '@/lib/supabase';
 export default function About() {
   const { language, t } = useLanguage();
 
-  const [profile, setProfile] = useState<Database['profile'] | null>(null);
+  const [profile, setProfile] = useState<Database['public']['Tables']['Row'] | null>(null);
   const [skills, setSkills] = useState<Database['skills'][]>([]);
   const [resumeUrl, setResumeUrl] = useState<string | null>(null);
 
