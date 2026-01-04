@@ -9,7 +9,7 @@ import type { Database } from '@/lib/supabase';
 export default function About() {
   const { language, t } = useLanguage();
 
-  const [profile, setProfile] = useState<Database['public']['Tables']['Row'] | null>(null);
+  const [profile, setProfile] = useState<Database['profile'] | null>(null);
   const [skills, setSkills] = useState<Database['skills'][]>([]);
   const [resumeUrl, setResumeUrl] = useState<string | null>(null);
 
@@ -40,8 +40,16 @@ export default function About() {
     return <div className="min-h-screen flex items-center justify-center text-gray-500">Loading…</div>;
   }
 
-  const education = language === 'jp' ? profile.education_jp : profile.education;
-  const experience = language === 'jp' ? profile.experience_jp : profile.experience;
+  const education =
+  language === 'jp' && profile?.education_jp
+    ? profile.education_jp
+    : profile?.education;
+
+const experience =
+  language === 'jp' && profile?.experience_jp
+    ? profile.experience_jp
+    : profile?.experience;
+
 
   const groupedSkills = skills.reduce((acc, s) => {
     acc[s.category] = acc[s.category] || [];
